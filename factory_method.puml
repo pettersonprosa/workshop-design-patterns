@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+'CLASSES
+
+abstract class Logger {
+    # {abstract} LogPrinter createLogger()
+    + void log(String message)
+}
+
+interface LogPrinter {
+    + void print(message: String)
+}
+
+class ConsoleLogCreator {
+    + LogPrinter createLogger()
+}
+
+class ConsoleLogPrinter{
+    + void print(String message)
+}
+
+' RELACIONAMENTO
+
+Logger ..> LogPrinter
+
+ConsoleLogPrinter ..|> LogPrinter
+
+ConsoleLogCreator --|> Logger
+ConsoleLogCreator ..> ConsoleLogPrinter : <<create>>
+
+
+@enduml
